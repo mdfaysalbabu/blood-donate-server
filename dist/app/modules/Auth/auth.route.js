@@ -11,5 +11,5 @@ const auth_controller_1 = require("./auth.controller");
 const router = express_1.default.Router();
 router.post("/", auth_controller_1.AuthController.loginUser);
 router.post("/refresh-token", auth_controller_1.AuthController.refreshToken);
-router.post("/change-password", (0, auth_1.default)(client_1.UserRole.admin, client_1.UserRole.donor, client_1.UserRole.user), auth_controller_1.AuthController.changePassword);
+router.post("/change-password", (0, auth_1.default)(client_1.UserRole.admin, client_1.UserRole.donor, client_1.UserRole.requester), auth_controller_1.AuthController.changePassword);
 exports.AuthRoutes = router;

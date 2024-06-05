@@ -168,7 +168,6 @@ const createDonationRequestIntoDB = (req) => __awaiter(void 0, void 0, void 0, f
                     name: true,
                     email: true,
                     phone: true,
-                    role: true,
                     status: true,
                     bloodType: true,
                     location: true,

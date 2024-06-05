@@ -9,7 +9,9 @@ const registerUserSchema = zod_1.z.object({
         .string({ required_error: "Email must be a valid email address." })
         .email(),
     phone: zod_1.z.string({ required_error: "Phone must be a valid phone no" }),
-    role: zod_1.z.enum([client_1.UserRole.admin, client_1.UserRole.donor, client_1.UserRole.user]).default("user"),
+    role: zod_1.z
+        .enum([client_1.UserRole.admin, client_1.UserRole.donor, client_1.UserRole.requester])
+        .default("donor"),
     status: zod_1.z.enum([client_1.Status.active, client_1.Status.deactive]).default("active"),
     password: zod_1.z.string({ required_error: "Password must be included!" }),
     bloodType: zod_1.z.string({ required_error: "Blood type is required!" }),

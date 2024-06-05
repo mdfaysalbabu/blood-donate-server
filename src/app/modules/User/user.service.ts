@@ -182,7 +182,6 @@ const createDonationRequestIntoDB = async (req: Request): Promise<any> => {
           name: true,
           email: true,
           phone: true,
-          role: true,
           status: true,
           bloodType: true,
           location: true,
