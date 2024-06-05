@@ -11,9 +11,9 @@ const validateRequest_1 = __importDefault(require("../../middlewares/validateReq
 const user_controller_1 = require("./user.controller");
 const user_validation_1 = require("./user.validation");
 const router = express_1.default.Router();
-router.get("/donor-list", user_controller_1.UserController.getAllDoner);
+router.get("/donors", user_controller_1.UserController.getAllDoner);
 router.get("/donor/:id", user_controller_1.UserController.getSingleDoner);
-router.get("/donation-request", (0, auth_1.default)(client_1.UserRole.admin, client_1.UserRole.requester), user_controller_1.UserController.getDonationRequestsForDonor);
+router.get("/donation-request", (0, auth_1.default)(client_1.UserRole.admin, client_1.UserRole.donor), user_controller_1.UserController.getDonationRequestsForDonor);
 router.get("/my-profile", (0, auth_1.default)(client_1.UserRole.admin, client_1.UserRole.donor, client_1.UserRole.requester), user_controller_1.UserController.getUserProfile);
 router.put("/my-profile", (0, auth_1.default)(client_1.UserRole.admin, client_1.UserRole.donor, client_1.UserRole.requester), (0, validateRequest_1.default)(user_validation_1.UserValidation.updateUserProfileSchema), user_controller_1.UserController.updateUserProfile);
 router.post("/register", (0, validateRequest_1.default)(user_validation_1.UserValidation.registerUserSchema), user_controller_1.UserController.registerUser);

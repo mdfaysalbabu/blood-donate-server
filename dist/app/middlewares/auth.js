@@ -19,11 +19,13 @@ const ApiError_1 = __importDefault(require("../errors/ApiError"));
 const auth = (...roles) => {
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
         try {
-            const token = req.headers.authorization;
-            if (!token) {
+            const accessToken = req.headers.authorization;
+            console.log(accessToken);
+            if (!accessToken) {
                 throw new ApiError_1.default(http_status_1.default.UNAUTHORIZED, "You are not authorized!");
             }
-            const verifiedUser = jwtToken_1.jwtToken.verifyToken(token, config_1.default.jwt.jwt_secret);
+            const verifiedUser = jwtToken_1.jwtToken.verifyToken(accessToken, config_1.default.jwt.jwt_secret);
+            console.log(verifiedUser);
             req.user = verifiedUser;
             if (roles.length && !roles.includes(verifiedUser.role)) {
                 throw new ApiError_1.default(http_status_1.default.FORBIDDEN, "Forbidden!");

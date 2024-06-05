@@ -26,6 +26,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserService = void 0;
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const http_status_1 = __importDefault(require("http-status"));
+const client_1 = require("../../../../prisma/generated/client");
 const config_1 = __importDefault(require("../../../config"));
 const jwtToken_1 = require("../../constants/jwtToken");
 const pagination_1 = require("../../constants/pagination");
@@ -97,6 +98,13 @@ const getAllDonarFromDB = (params, options) => __awaiter(void 0, void 0, void 0,
             })),
         });
     }
+    andConditions.push({
+        AND: {
+            role: {
+                equals: client_1.UserRole.donor,
+            },
+        },
+    });
     const whereConditions = andConditions.length > 0 ? { AND: andConditions } : {};
     console.log(sortBy, sortOrder);
     const result = yield prisma_1.default.user.findMany({
@@ -112,6 +120,7 @@ const getAllDonarFromDB = (params, options) => __awaiter(void 0, void 0, void 0,
             email: true,
             phone: true,
             status: true,
+            role: true,
             bloodType: true,
             location: true,
             availability: true,
@@ -148,6 +157,7 @@ const createDonationRequestIntoDB = (req) => __awaiter(void 0, void 0, void 0, f
     // Decoding the token to get the requester's details
     const decodedToken = jwtToken_1.jwtToken.verifyToken(token, config_1.default.jwt.jwt_secret);
     const requestData = Object.assign(Object.assign({}, req.body), { requesterId: decodedToken.id });
+    console.log(requestData);
     const result = yield prisma_1.default.request.create({
         data: requestData,
         select: {

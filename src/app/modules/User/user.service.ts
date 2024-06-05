@@ -53,6 +53,7 @@ const registerUserIntoDB = async (req: Request): Promise<any> => {
         email: true,
         phone: true,
         status: true,
+        role: true,
         bloodType: true,
         location: true,
         availability: true,
@@ -190,6 +191,7 @@ const createDonationRequestIntoDB = async (req: Request): Promise<any> => {
           email: true,
           phone: true,
           status: true,
+          role: true,
           bloodType: true,
           location: true,
           availability: true,
@@ -231,6 +233,7 @@ const getDonationRequestsForDonorFromDB = async (
           id: true,
           name: true,
           email: true,
+          phone: true,
           location: true,
           bloodType: true,
           availability: true,
@@ -367,25 +370,29 @@ const updateUserProfileIntoDB = async (
 };
 
 type UpdateUser = {
-  userId: string;
-  status: Status;
-  role: UserRole;
+  id: string;
+  status?: Status;
+  role?: UserRole;
 };
 
 const updateUserRoleStatusIntoDB = async (payload: UpdateUser) => {
-  const updateData: UpdateUser = {} as UpdateUser;
-  if (payload.status) {
+  const updateData: Partial<UpdateUser> = {};
+
+  if (payload.status !== undefined) {
     updateData.status = payload.status;
   }
-  if (payload.role) {
+
+  if (payload.role !== undefined) {
     updateData.role = payload.role;
   }
+
   const updatedProfile = await prisma.user.update({
     where: {
-      id: payload.userId,
+      id: payload.id,
     },
     data: updateData,
   });
+
   return updatedProfile;
 };
 

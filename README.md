@@ -8,7 +8,21 @@
 
 ---
 
-[https://github.com/Porgramming-Hero-web-course/l2-b2-fullstack-track-assignment-8-Upoma218](https://github.com/Porgramming-Hero-web-course/l2-b2-fullstack-track-assignment-8-Upoma218)
+[https://github.com/Upoma218/blood-donation-app-server](https://github.com/Upoma218/blood-donation-app-server)
+
+---
+
+## Blood Donation Application Client side live link:
+
+---
+
+[https://blood-donation-app-client.vercel.app](https://blood-donation-app-client.vercel.app)
+
+## Blood Donation Application Client side repo link:
+
+---
+
+[https://github.com/Upoma218/blood-donation-app-client](https://github.com/Upoma218/blood-donation-app-client)
 
 ---
 
@@ -99,4 +113,5 @@ git clone "paste the repo link here"`
 - Add other environment variables in `.env` file
 - Run the project by this command: `npm run dev`
 - Project will run at :[http://localhost:5000](http://localhost:5000)
+
 # blood-donation-app-server

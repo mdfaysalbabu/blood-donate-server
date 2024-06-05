@@ -7,7 +7,15 @@ import router from "./app/routes";
 
 const app: Application = express();
 
-app.use(cors({ origin: "*", credentials: true }));
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5000",
+      "https://blood-donation-app-client.vercel.app",
+    ],
+    credentials: true,
+  })
+);
 
 // parser
 app.use(express.json());

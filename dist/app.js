@@ -10,7 +10,13 @@ const http_status_1 = __importDefault(require("http-status"));
 const globalErrorHandler_1 = __importDefault(require("./app/middlewares/globalErrorHandler"));
 const routes_1 = __importDefault(require("./app/routes"));
 const app = (0, express_1.default)();
-app.use((0, cors_1.default)());
+app.use((0, cors_1.default)({
+    origin: [
+        "http://localhost:5000",
+        "https://blood-donation-app-client.vercel.app",
+    ],
+    credentials: true,
+}));
 // parser
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));

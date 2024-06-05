@@ -13,7 +13,7 @@ const moduleRoutes = [
         route: user_routes_1.UserRoutes,
     },
     {
-        path: "/login",
+        path: "/auth",
         route: auth_route_1.AuthRoutes,
     },
 ];

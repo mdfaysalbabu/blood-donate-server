@@ -112,7 +112,6 @@ const getUserProfile = catchAsync(async (req: Request, res: Response) => {
 const updateUserProfile = catchAsync(async (req: Request, res: Response) => {
   const { bio, age, lastDonationDate } = req.body;
 
-  // Call the service to update the user profile
   const result = await UserService.updateUserProfileIntoDB(req, {
     bio,
     age,
@@ -125,18 +124,19 @@ const updateUserProfile = catchAsync(async (req: Request, res: Response) => {
     data: result,
   });
 });
-const updateUserRoleStatusIntoDB = catchAsync(
-  async (req: Request, res: Response) => {
-    // Call the service to update the user profile
-    const result = await UserService.updateUserRoleStatusIntoDB(req.body);
-    sendResponse(res, {
-      statusCode: 200,
-      success: true,
-      message: "User profile updated successfully",
-      data: result,
-    });
-  }
-);
+const updateUserRoleStatus = catchAsync(async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const result = await UserService.updateUserRoleStatusIntoDB({
+    id,
+    ...req.body,
+  });
+  sendResponse(res, {
+    statusCode: 200,
+    success: true,
+    message: "User profile updated successfully",
+    data: result,
+  });
+});
 
 export const UserController = {
   registerUser,
@@ -147,5 +147,5 @@ export const UserController = {
   getUserProfile,
   updateUserProfile,
   getSingleDoner,
-  updateUserRoleStatusIntoDB,
+  updateUserRoleStatus,
 };

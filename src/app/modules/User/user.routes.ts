@@ -7,7 +7,7 @@ import { UserValidation } from "./user.validation";
 
 const router = express.Router();
 
-router.get("/donor-list", UserController.getAllDoner);
+router.get("/donors", UserController.getAllDoner);
 router.get("/donor/:id", UserController.getSingleDoner);
 
 router.get(
@@ -50,10 +50,10 @@ router.put(
 );
 
 router.patch(
-  "/manage-user",
+  "/manage-user/:id",
   auth(UserRole.admin),
   validateRequest(UserValidation.updateUserRoleStatusSchema),
-  UserController.updateUserRoleStatusIntoDB
+  UserController.updateUserRoleStatus
 );
 
 export const UserRoutes = router;
