@@ -283,7 +283,6 @@ const updateRequestStatusIntoDB = async (
       id: true,
       donorId: true,
       requesterId: true,
-      phoneNumber: true,
       dateOfDonation: true,
       hospitalName: true,
       hospitalAddress: true,
