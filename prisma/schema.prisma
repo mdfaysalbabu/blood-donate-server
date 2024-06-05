@@ -19,7 +19,7 @@ model User {
     phone String @default("")
     password         String
     role UserRole @default(donor)
-    
+    isDonateBlood Boolean @default(true)
     status Status @default(active)
     bloodType        String    
     location         String
@@ -41,7 +41,6 @@ model Request {
     donorId        String
     requesterId    String
     phoneNumber    String
-    isDonateBlood Boolean @default(true)
     dateOfDonation String
     hospitalName   String
     hospitalAddress String

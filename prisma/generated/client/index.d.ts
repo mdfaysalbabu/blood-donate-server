@@ -1133,6 +1133,7 @@ export namespace Prisma {
     phone: string | null
     password: string | null
     role: $Enums.UserRole | null
+    isDonateBlood: boolean | null
     status: $Enums.Status | null
     bloodType: string | null
     location: string | null
@@ -1148,6 +1149,7 @@ export namespace Prisma {
     phone: string | null
     password: string | null
     role: $Enums.UserRole | null
+    isDonateBlood: boolean | null
     status: $Enums.Status | null
     bloodType: string | null
     location: string | null
@@ -1163,6 +1165,7 @@ export namespace Prisma {
     phone: number
     password: number
     role: number
+    isDonateBlood: number
     status: number
     bloodType: number
     location: number
@@ -1180,6 +1183,7 @@ export namespace Prisma {
     phone?: true
     password?: true
     role?: true
+    isDonateBlood?: true
     status?: true
     bloodType?: true
     location?: true
@@ -1195,6 +1199,7 @@ export namespace Prisma {
     phone?: true
     password?: true
     role?: true
+    isDonateBlood?: true
     status?: true
     bloodType?: true
     location?: true
@@ -1210,6 +1215,7 @@ export namespace Prisma {
     phone?: true
     password?: true
     role?: true
+    isDonateBlood?: true
     status?: true
     bloodType?: true
     location?: true
@@ -1298,6 +1304,7 @@ export namespace Prisma {
     phone: string
     password: string
     role: $Enums.UserRole
+    isDonateBlood: boolean
     status: $Enums.Status
     bloodType: string
     location: string
@@ -1330,6 +1337,7 @@ export namespace Prisma {
     phone?: boolean
     password?: boolean
     role?: boolean
+    isDonateBlood?: boolean
     status?: boolean
     bloodType?: boolean
     location?: boolean
@@ -1349,6 +1357,7 @@ export namespace Prisma {
     phone?: boolean
     password?: boolean
     role?: boolean
+    isDonateBlood?: boolean
     status?: boolean
     bloodType?: boolean
     location?: boolean
@@ -1379,6 +1388,7 @@ export namespace Prisma {
       phone: string
       password: string
       role: $Enums.UserRole
+      isDonateBlood: boolean
       status: $Enums.Status
       bloodType: string
       location: string
@@ -1790,6 +1800,7 @@ export namespace Prisma {
     readonly phone: FieldRef<"User", 'String'>
     readonly password: FieldRef<"User", 'String'>
     readonly role: FieldRef<"User", 'UserRole'>
+    readonly isDonateBlood: FieldRef<"User", 'Boolean'>
     readonly status: FieldRef<"User", 'Status'>
     readonly bloodType: FieldRef<"User", 'String'>
     readonly location: FieldRef<"User", 'String'>
@@ -2196,7 +2207,6 @@ export namespace Prisma {
     donorId: string | null
     requesterId: string | null
     phoneNumber: string | null
-    isDonateBlood: boolean | null
     dateOfDonation: string | null
     hospitalName: string | null
     hospitalAddress: string | null
@@ -2211,7 +2221,6 @@ export namespace Prisma {
     donorId: string | null
     requesterId: string | null
     phoneNumber: string | null
-    isDonateBlood: boolean | null
     dateOfDonation: string | null
     hospitalName: string | null
     hospitalAddress: string | null
@@ -2226,7 +2235,6 @@ export namespace Prisma {
     donorId: number
     requesterId: number
     phoneNumber: number
-    isDonateBlood: number
     dateOfDonation: number
     hospitalName: number
     hospitalAddress: number
@@ -2243,7 +2251,6 @@ export namespace Prisma {
     donorId?: true
     requesterId?: true
     phoneNumber?: true
-    isDonateBlood?: true
     dateOfDonation?: true
     hospitalName?: true
     hospitalAddress?: true
@@ -2258,7 +2265,6 @@ export namespace Prisma {
     donorId?: true
     requesterId?: true
     phoneNumber?: true
-    isDonateBlood?: true
     dateOfDonation?: true
     hospitalName?: true
     hospitalAddress?: true
@@ -2273,7 +2279,6 @@ export namespace Prisma {
     donorId?: true
     requesterId?: true
     phoneNumber?: true
-    isDonateBlood?: true
     dateOfDonation?: true
     hospitalName?: true
     hospitalAddress?: true
@@ -2361,7 +2366,6 @@ export namespace Prisma {
     donorId: string
     requesterId: string
     phoneNumber: string
-    isDonateBlood: boolean
     dateOfDonation: string
     hospitalName: string
     hospitalAddress: string
@@ -2393,7 +2397,6 @@ export namespace Prisma {
     donorId?: boolean
     requesterId?: boolean
     phoneNumber?: boolean
-    isDonateBlood?: boolean
     dateOfDonation?: boolean
     hospitalName?: boolean
     hospitalAddress?: boolean
@@ -2410,7 +2413,6 @@ export namespace Prisma {
     donorId?: boolean
     requesterId?: boolean
     phoneNumber?: boolean
-    isDonateBlood?: boolean
     dateOfDonation?: boolean
     hospitalName?: boolean
     hospitalAddress?: boolean
@@ -2437,7 +2439,6 @@ export namespace Prisma {
       donorId: string
       requesterId: string
       phoneNumber: string
-      isDonateBlood: boolean
       dateOfDonation: string
       hospitalName: string
       hospitalAddress: string
@@ -2846,7 +2847,6 @@ export namespace Prisma {
     readonly donorId: FieldRef<"Request", 'String'>
     readonly requesterId: FieldRef<"Request", 'String'>
     readonly phoneNumber: FieldRef<"Request", 'String'>
-    readonly isDonateBlood: FieldRef<"Request", 'Boolean'>
     readonly dateOfDonation: FieldRef<"Request", 'String'>
     readonly hospitalName: FieldRef<"Request", 'String'>
     readonly hospitalAddress: FieldRef<"Request", 'String'>
@@ -4176,6 +4176,7 @@ export namespace Prisma {
     phone: 'phone',
     password: 'password',
     role: 'role',
+    isDonateBlood: 'isDonateBlood',
     status: 'status',
     bloodType: 'bloodType',
     location: 'location',
@@ -4192,7 +4193,6 @@ export namespace Prisma {
     donorId: 'donorId',
     requesterId: 'requesterId',
     phoneNumber: 'phoneNumber',
-    isDonateBlood: 'isDonateBlood',
     dateOfDonation: 'dateOfDonation',
     hospitalName: 'hospitalName',
     hospitalAddress: 'hospitalAddress',
@@ -4268,6 +4268,13 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+  /**
    * Reference to a field of type 'Status'
    */
   export type EnumStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Status'>
@@ -4278,13 +4285,6 @@ export namespace Prisma {
    * Reference to a field of type 'Status[]'
    */
   export type ListEnumStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Status[]'>
-    
-
-
-  /**
-   * Reference to a field of type 'Boolean'
-   */
-  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 
@@ -4357,6 +4357,7 @@ export namespace Prisma {
     phone?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
     role?: EnumUserRoleFilter<"User"> | $Enums.UserRole
+    isDonateBlood?: BoolFilter<"User"> | boolean
     status?: EnumStatusFilter<"User"> | $Enums.Status
     bloodType?: StringFilter<"User"> | string
     location?: StringFilter<"User"> | string
@@ -4375,6 +4376,7 @@ export namespace Prisma {
     phone?: SortOrder
     password?: SortOrder
     role?: SortOrder
+    isDonateBlood?: SortOrder
     status?: SortOrder
     bloodType?: SortOrder
     location?: SortOrder
@@ -4396,6 +4398,7 @@ export namespace Prisma {
     phone?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
     role?: EnumUserRoleFilter<"User"> | $Enums.UserRole
+    isDonateBlood?: BoolFilter<"User"> | boolean
     status?: EnumStatusFilter<"User"> | $Enums.Status
     bloodType?: StringFilter<"User"> | string
     location?: StringFilter<"User"> | string
@@ -4414,6 +4417,7 @@ export namespace Prisma {
     phone?: SortOrder
     password?: SortOrder
     role?: SortOrder
+    isDonateBlood?: SortOrder
     status?: SortOrder
     bloodType?: SortOrder
     location?: SortOrder
@@ -4435,6 +4439,7 @@ export namespace Prisma {
     phone?: StringWithAggregatesFilter<"User"> | string
     password?: StringWithAggregatesFilter<"User"> | string
     role?: EnumUserRoleWithAggregatesFilter<"User"> | $Enums.UserRole
+    isDonateBlood?: BoolWithAggregatesFilter<"User"> | boolean
     status?: EnumStatusWithAggregatesFilter<"User"> | $Enums.Status
     bloodType?: StringWithAggregatesFilter<"User"> | string
     location?: StringWithAggregatesFilter<"User"> | string
@@ -4451,7 +4456,6 @@ export namespace Prisma {
     donorId?: StringFilter<"Request"> | string
     requesterId?: StringFilter<"Request"> | string
     phoneNumber?: StringFilter<"Request"> | string
-    isDonateBlood?: BoolFilter<"Request"> | boolean
     dateOfDonation?: StringFilter<"Request"> | string
     hospitalName?: StringFilter<"Request"> | string
     hospitalAddress?: StringFilter<"Request"> | string
@@ -4468,7 +4472,6 @@ export namespace Prisma {
     donorId?: SortOrder
     requesterId?: SortOrder
     phoneNumber?: SortOrder
-    isDonateBlood?: SortOrder
     dateOfDonation?: SortOrder
     hospitalName?: SortOrder
     hospitalAddress?: SortOrder
@@ -4488,7 +4491,6 @@ export namespace Prisma {
     donorId?: StringFilter<"Request"> | string
     requesterId?: StringFilter<"Request"> | string
     phoneNumber?: StringFilter<"Request"> | string
-    isDonateBlood?: BoolFilter<"Request"> | boolean
     dateOfDonation?: StringFilter<"Request"> | string
     hospitalName?: StringFilter<"Request"> | string
     hospitalAddress?: StringFilter<"Request"> | string
@@ -4505,7 +4507,6 @@ export namespace Prisma {
     donorId?: SortOrder
     requesterId?: SortOrder
     phoneNumber?: SortOrder
-    isDonateBlood?: SortOrder
     dateOfDonation?: SortOrder
     hospitalName?: SortOrder
     hospitalAddress?: SortOrder
@@ -4526,7 +4527,6 @@ export namespace Prisma {
     donorId?: StringWithAggregatesFilter<"Request"> | string
     requesterId?: StringWithAggregatesFilter<"Request"> | string
     phoneNumber?: StringWithAggregatesFilter<"Request"> | string
-    isDonateBlood?: BoolWithAggregatesFilter<"Request"> | boolean
     dateOfDonation?: StringWithAggregatesFilter<"Request"> | string
     hospitalName?: StringWithAggregatesFilter<"Request"> | string
     hospitalAddress?: StringWithAggregatesFilter<"Request"> | string
@@ -4610,6 +4610,7 @@ export namespace Prisma {
     phone?: string
     password: string
     role?: $Enums.UserRole
+    isDonateBlood?: boolean
     status?: $Enums.Status
     bloodType: string
     location: string
@@ -4628,6 +4629,7 @@ export namespace Prisma {
     phone?: string
     password: string
     role?: $Enums.UserRole
+    isDonateBlood?: boolean
     status?: $Enums.Status
     bloodType: string
     location: string
@@ -4646,6 +4648,7 @@ export namespace Prisma {
     phone?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    isDonateBlood?: BoolFieldUpdateOperationsInput | boolean
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     bloodType?: StringFieldUpdateOperationsInput | string
     location?: StringFieldUpdateOperationsInput | string
@@ -4664,6 +4667,7 @@ export namespace Prisma {
     phone?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    isDonateBlood?: BoolFieldUpdateOperationsInput | boolean
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     bloodType?: StringFieldUpdateOperationsInput | string
     location?: StringFieldUpdateOperationsInput | string
@@ -4682,6 +4686,7 @@ export namespace Prisma {
     phone?: string
     password: string
     role?: $Enums.UserRole
+    isDonateBlood?: boolean
     status?: $Enums.Status
     bloodType: string
     location: string
@@ -4697,6 +4702,7 @@ export namespace Prisma {
     phone?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    isDonateBlood?: BoolFieldUpdateOperationsInput | boolean
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     bloodType?: StringFieldUpdateOperationsInput | string
     location?: StringFieldUpdateOperationsInput | string
@@ -4712,6 +4718,7 @@ export namespace Prisma {
     phone?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    isDonateBlood?: BoolFieldUpdateOperationsInput | boolean
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     bloodType?: StringFieldUpdateOperationsInput | string
     location?: StringFieldUpdateOperationsInput | string
@@ -4723,7 +4730,6 @@ export namespace Prisma {
   export type RequestCreateInput = {
     id?: string
     phoneNumber: string
-    isDonateBlood?: boolean
     dateOfDonation: string
     hospitalName: string
     hospitalAddress: string
@@ -4740,7 +4746,6 @@ export namespace Prisma {
     donorId: string
     requesterId: string
     phoneNumber: string
-    isDonateBlood?: boolean
     dateOfDonation: string
     hospitalName: string
     hospitalAddress: string
@@ -4753,7 +4758,6 @@ export namespace Prisma {
   export type RequestUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
-    isDonateBlood?: BoolFieldUpdateOperationsInput | boolean
     dateOfDonation?: StringFieldUpdateOperationsInput | string
     hospitalName?: StringFieldUpdateOperationsInput | string
     hospitalAddress?: StringFieldUpdateOperationsInput | string
@@ -4770,7 +4774,6 @@ export namespace Prisma {
     donorId?: StringFieldUpdateOperationsInput | string
     requesterId?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
-    isDonateBlood?: BoolFieldUpdateOperationsInput | boolean
     dateOfDonation?: StringFieldUpdateOperationsInput | string
     hospitalName?: StringFieldUpdateOperationsInput | string
     hospitalAddress?: StringFieldUpdateOperationsInput | string
@@ -4785,7 +4788,6 @@ export namespace Prisma {
     donorId: string
     requesterId: string
     phoneNumber: string
-    isDonateBlood?: boolean
     dateOfDonation: string
     hospitalName: string
     hospitalAddress: string
@@ -4798,7 +4800,6 @@ export namespace Prisma {
   export type RequestUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
-    isDonateBlood?: BoolFieldUpdateOperationsInput | boolean
     dateOfDonation?: StringFieldUpdateOperationsInput | string
     hospitalName?: StringFieldUpdateOperationsInput | string
     hospitalAddress?: StringFieldUpdateOperationsInput | string
@@ -4813,7 +4814,6 @@ export namespace Prisma {
     donorId?: StringFieldUpdateOperationsInput | string
     requesterId?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
-    isDonateBlood?: BoolFieldUpdateOperationsInput | boolean
     dateOfDonation?: StringFieldUpdateOperationsInput | string
     hospitalName?: StringFieldUpdateOperationsInput | string
     hospitalAddress?: StringFieldUpdateOperationsInput | string
@@ -4914,16 +4914,16 @@ export namespace Prisma {
     not?: NestedEnumUserRoleFilter<$PrismaModel> | $Enums.UserRole
   }
 
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type EnumStatusFilter<$PrismaModel = never> = {
     equals?: $Enums.Status | EnumStatusFieldRefInput<$PrismaModel>
     in?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>
     notIn?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>
     not?: NestedEnumStatusFilter<$PrismaModel> | $Enums.Status
-  }
-
-  export type BoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
   export type DateTimeFilter<$PrismaModel = never> = {
@@ -4959,6 +4959,7 @@ export namespace Prisma {
     phone?: SortOrder
     password?: SortOrder
     role?: SortOrder
+    isDonateBlood?: SortOrder
     status?: SortOrder
     bloodType?: SortOrder
     location?: SortOrder
@@ -4974,6 +4975,7 @@ export namespace Prisma {
     phone?: SortOrder
     password?: SortOrder
     role?: SortOrder
+    isDonateBlood?: SortOrder
     status?: SortOrder
     bloodType?: SortOrder
     location?: SortOrder
@@ -4989,6 +4991,7 @@ export namespace Prisma {
     phone?: SortOrder
     password?: SortOrder
     role?: SortOrder
+    isDonateBlood?: SortOrder
     status?: SortOrder
     bloodType?: SortOrder
     location?: SortOrder
@@ -5025,6 +5028,14 @@ export namespace Prisma {
     _max?: NestedEnumUserRoleFilter<$PrismaModel>
   }
 
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
   export type EnumStatusWithAggregatesFilter<$PrismaModel = never> = {
     equals?: $Enums.Status | EnumStatusFieldRefInput<$PrismaModel>
     in?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>
@@ -5033,14 +5044,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumStatusFilter<$PrismaModel>
     _max?: NestedEnumStatusFilter<$PrismaModel>
-  }
-
-  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -5074,7 +5077,6 @@ export namespace Prisma {
     donorId?: SortOrder
     requesterId?: SortOrder
     phoneNumber?: SortOrder
-    isDonateBlood?: SortOrder
     dateOfDonation?: SortOrder
     hospitalName?: SortOrder
     hospitalAddress?: SortOrder
@@ -5089,7 +5091,6 @@ export namespace Prisma {
     donorId?: SortOrder
     requesterId?: SortOrder
     phoneNumber?: SortOrder
-    isDonateBlood?: SortOrder
     dateOfDonation?: SortOrder
     hospitalName?: SortOrder
     hospitalAddress?: SortOrder
@@ -5104,7 +5105,6 @@ export namespace Prisma {
     donorId?: SortOrder
     requesterId?: SortOrder
     phoneNumber?: SortOrder
-    isDonateBlood?: SortOrder
     dateOfDonation?: SortOrder
     hospitalName?: SortOrder
     hospitalAddress?: SortOrder
@@ -5237,12 +5237,12 @@ export namespace Prisma {
     set?: $Enums.UserRole
   }
 
-  export type EnumStatusFieldUpdateOperationsInput = {
-    set?: $Enums.Status
-  }
-
   export type BoolFieldUpdateOperationsInput = {
     set?: boolean
+  }
+
+  export type EnumStatusFieldUpdateOperationsInput = {
+    set?: $Enums.Status
   }
 
   export type DateTimeFieldUpdateOperationsInput = {
@@ -5400,16 +5400,16 @@ export namespace Prisma {
     not?: NestedEnumUserRoleFilter<$PrismaModel> | $Enums.UserRole
   }
 
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type NestedEnumStatusFilter<$PrismaModel = never> = {
     equals?: $Enums.Status | EnumStatusFieldRefInput<$PrismaModel>
     in?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>
     notIn?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>
     not?: NestedEnumStatusFilter<$PrismaModel> | $Enums.Status
-  }
-
-  export type NestedBoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
   export type NestedDateTimeFilter<$PrismaModel = never> = {
@@ -5461,6 +5461,14 @@ export namespace Prisma {
     _max?: NestedEnumUserRoleFilter<$PrismaModel>
   }
 
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
   export type NestedEnumStatusWithAggregatesFilter<$PrismaModel = never> = {
     equals?: $Enums.Status | EnumStatusFieldRefInput<$PrismaModel>
     in?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>
@@ -5469,14 +5477,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumStatusFilter<$PrismaModel>
     _max?: NestedEnumStatusFilter<$PrismaModel>
-  }
-
-  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -5563,7 +5563,6 @@ export namespace Prisma {
   export type RequestCreateWithoutDonorInput = {
     id?: string
     phoneNumber: string
-    isDonateBlood?: boolean
     dateOfDonation: string
     hospitalName: string
     hospitalAddress: string
@@ -5578,7 +5577,6 @@ export namespace Prisma {
     id?: string
     requesterId: string
     phoneNumber: string
-    isDonateBlood?: boolean
     dateOfDonation: string
     hospitalName: string
     hospitalAddress: string
@@ -5601,7 +5599,6 @@ export namespace Prisma {
   export type RequestCreateWithoutRequesterInput = {
     id?: string
     phoneNumber: string
-    isDonateBlood?: boolean
     dateOfDonation: string
     hospitalName: string
     hospitalAddress: string
@@ -5616,7 +5613,6 @@ export namespace Prisma {
     id?: string
     donorId: string
     phoneNumber: string
-    isDonateBlood?: boolean
     dateOfDonation: string
     hospitalName: string
     hospitalAddress: string
@@ -5689,7 +5685,6 @@ export namespace Prisma {
     donorId?: StringFilter<"Request"> | string
     requesterId?: StringFilter<"Request"> | string
     phoneNumber?: StringFilter<"Request"> | string
-    isDonateBlood?: BoolFilter<"Request"> | boolean
     dateOfDonation?: StringFilter<"Request"> | string
     hospitalName?: StringFilter<"Request"> | string
     hospitalAddress?: StringFilter<"Request"> | string
@@ -5722,6 +5717,7 @@ export namespace Prisma {
     phone?: string
     password: string
     role?: $Enums.UserRole
+    isDonateBlood?: boolean
     status?: $Enums.Status
     bloodType: string
     location: string
@@ -5739,6 +5735,7 @@ export namespace Prisma {
     phone?: string
     password: string
     role?: $Enums.UserRole
+    isDonateBlood?: boolean
     status?: $Enums.Status
     bloodType: string
     location: string
@@ -5761,6 +5758,7 @@ export namespace Prisma {
     phone?: string
     password: string
     role?: $Enums.UserRole
+    isDonateBlood?: boolean
     status?: $Enums.Status
     bloodType: string
     location: string
@@ -5778,6 +5776,7 @@ export namespace Prisma {
     phone?: string
     password: string
     role?: $Enums.UserRole
+    isDonateBlood?: boolean
     status?: $Enums.Status
     bloodType: string
     location: string
@@ -5811,6 +5810,7 @@ export namespace Prisma {
     phone?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    isDonateBlood?: BoolFieldUpdateOperationsInput | boolean
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     bloodType?: StringFieldUpdateOperationsInput | string
     location?: StringFieldUpdateOperationsInput | string
@@ -5828,6 +5828,7 @@ export namespace Prisma {
     phone?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    isDonateBlood?: BoolFieldUpdateOperationsInput | boolean
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     bloodType?: StringFieldUpdateOperationsInput | string
     location?: StringFieldUpdateOperationsInput | string
@@ -5856,6 +5857,7 @@ export namespace Prisma {
     phone?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    isDonateBlood?: BoolFieldUpdateOperationsInput | boolean
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     bloodType?: StringFieldUpdateOperationsInput | string
     location?: StringFieldUpdateOperationsInput | string
@@ -5873,6 +5875,7 @@ export namespace Prisma {
     phone?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    isDonateBlood?: BoolFieldUpdateOperationsInput | boolean
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     bloodType?: StringFieldUpdateOperationsInput | string
     location?: StringFieldUpdateOperationsInput | string
@@ -5890,6 +5893,7 @@ export namespace Prisma {
     phone?: string
     password: string
     role?: $Enums.UserRole
+    isDonateBlood?: boolean
     status?: $Enums.Status
     bloodType: string
     location: string
@@ -5907,6 +5911,7 @@ export namespace Prisma {
     phone?: string
     password: string
     role?: $Enums.UserRole
+    isDonateBlood?: boolean
     status?: $Enums.Status
     bloodType: string
     location: string
@@ -5940,6 +5945,7 @@ export namespace Prisma {
     phone?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    isDonateBlood?: BoolFieldUpdateOperationsInput | boolean
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     bloodType?: StringFieldUpdateOperationsInput | string
     location?: StringFieldUpdateOperationsInput | string
@@ -5957,6 +5963,7 @@ export namespace Prisma {
     phone?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    isDonateBlood?: BoolFieldUpdateOperationsInput | boolean
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     bloodType?: StringFieldUpdateOperationsInput | string
     location?: StringFieldUpdateOperationsInput | string
@@ -5971,7 +5978,6 @@ export namespace Prisma {
     id?: string
     requesterId: string
     phoneNumber: string
-    isDonateBlood?: boolean
     dateOfDonation: string
     hospitalName: string
     hospitalAddress: string
@@ -5985,7 +5991,6 @@ export namespace Prisma {
     id?: string
     donorId: string
     phoneNumber: string
-    isDonateBlood?: boolean
     dateOfDonation: string
     hospitalName: string
     hospitalAddress: string
@@ -5998,7 +6003,6 @@ export namespace Prisma {
   export type RequestUpdateWithoutDonorInput = {
     id?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
-    isDonateBlood?: BoolFieldUpdateOperationsInput | boolean
     dateOfDonation?: StringFieldUpdateOperationsInput | string
     hospitalName?: StringFieldUpdateOperationsInput | string
     hospitalAddress?: StringFieldUpdateOperationsInput | string
@@ -6013,7 +6017,6 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     requesterId?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
-    isDonateBlood?: BoolFieldUpdateOperationsInput | boolean
     dateOfDonation?: StringFieldUpdateOperationsInput | string
     hospitalName?: StringFieldUpdateOperationsInput | string
     hospitalAddress?: StringFieldUpdateOperationsInput | string
@@ -6027,7 +6030,6 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     requesterId?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
-    isDonateBlood?: BoolFieldUpdateOperationsInput | boolean
     dateOfDonation?: StringFieldUpdateOperationsInput | string
     hospitalName?: StringFieldUpdateOperationsInput | string
     hospitalAddress?: StringFieldUpdateOperationsInput | string
@@ -6040,7 +6042,6 @@ export namespace Prisma {
   export type RequestUpdateWithoutRequesterInput = {
     id?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
-    isDonateBlood?: BoolFieldUpdateOperationsInput | boolean
     dateOfDonation?: StringFieldUpdateOperationsInput | string
     hospitalName?: StringFieldUpdateOperationsInput | string
     hospitalAddress?: StringFieldUpdateOperationsInput | string
@@ -6055,7 +6056,6 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     donorId?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
-    isDonateBlood?: BoolFieldUpdateOperationsInput | boolean
     dateOfDonation?: StringFieldUpdateOperationsInput | string
     hospitalName?: StringFieldUpdateOperationsInput | string
     hospitalAddress?: StringFieldUpdateOperationsInput | string
@@ -6069,7 +6069,6 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     donorId?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
-    isDonateBlood?: BoolFieldUpdateOperationsInput | boolean
     dateOfDonation?: StringFieldUpdateOperationsInput | string
     hospitalName?: StringFieldUpdateOperationsInput | string
     hospitalAddress?: StringFieldUpdateOperationsInput | string
