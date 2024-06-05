@@ -1,4 +1,5 @@
 import express from "express";
+import { UserRole } from "../../../../prisma/generated/client";
 import auth from "../../middlewares/auth";
 import validateRequest from "../../middlewares/validateRequest";
 import { UserController } from "./user.controller";
@@ -11,15 +12,19 @@ router.get("/donor/:id", UserController.getSingleDoner);
 
 router.get(
   "/donation-request",
-  auth(),
+  auth(UserRole.admin, UserRole.user),
   UserController.getDonationRequestsForDonor
 );
 
-router.get("/my-profile", auth(), UserController.getUserProfile);
+router.get(
+  "/my-profile",
+  auth(UserRole.admin, UserRole.donor, UserRole.user),
+  UserController.getUserProfile
+);
 
 router.put(
   "/my-profile",
-  auth(),
+  auth(UserRole.admin, UserRole.donor, UserRole.user),
   validateRequest(UserValidation.updateUserProfileSchema),
   UserController.updateUserProfile
 );
@@ -32,21 +37,21 @@ router.post(
 
 router.post(
   "/donation-request",
-  auth(),
+  auth(UserRole.user),
   validateRequest(UserValidation.donationRequestSchema),
   UserController.createDonationRequest
 );
 
 router.put(
   "/donation-request/:requestId",
-  auth(),
+  auth(UserRole.admin, UserRole.donor),
   validateRequest(UserValidation.updateRequestStatusSchema),
   UserController.updateRequestStatus
 );
 
-router.put(
-  "/manageUser",
-  auth(),
+router.patch(
+  "/manage-user",
+  auth(UserRole.admin),
   validateRequest(UserValidation.updateUserRoleStatusSchema),
   UserController.updateUserRoleStatusIntoDB
 );

@@ -73,7 +73,6 @@ enum RequestStatus {
 }
 
 enum UserRole {
-  superAdmin
   user
   admin
   donor
