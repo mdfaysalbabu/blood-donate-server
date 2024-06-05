@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt";
 import { Secret } from "jsonwebtoken";
-import { Status, UserRole } from "../../../../prisma/generated/client";
+import { Status } from "../../../../prisma/generated/client";
 import config from "../../../config";
 import { jwtToken } from "../../constants/jwtToken";
 import prisma from "../../shared/prisma";
@@ -12,7 +12,6 @@ const loginUser = async (payload: { email: string; password: string }) => {
       status: Status.active,
     },
   });
-
   const isCorrectPassword: boolean = await bcrypt.compare(
     payload.password,
     userData.password
@@ -23,6 +22,7 @@ const loginUser = async (payload: { email: string; password: string }) => {
   }
   const accessToken = jwtToken.generateToken(
     {
+      id: userData.id,
       email: userData.email,
       role: userData.role,
     },
@@ -32,6 +32,7 @@ const loginUser = async (payload: { email: string; password: string }) => {
 
   const refreshToken = jwtToken.generateToken(
     {
+      id: userData.id,
       email: userData.email,
       role: userData.role,
     },
@@ -86,7 +87,7 @@ const changePassword = async (user: any, payload: any) => {
   });
 
   const isCorrectPassword: boolean = await bcrypt.compare(
-    payload.oldPassword,
+    payload.currentPassword,
     userData.password
   );
 

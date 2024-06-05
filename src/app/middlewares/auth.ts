@@ -12,17 +12,18 @@ const auth = (...roles: string[]) => {
     next: NextFunction
   ) => {
     try {
-      const token = req.headers.authorization;
+      const accessToken = req.headers.authorization;
+      console.log(accessToken);
 
-      if (!token) {
+      if (!accessToken) {
         throw new ApiError(httpStatus.UNAUTHORIZED, "You are not authorized!");
       }
 
       const verifiedUser = jwtToken.verifyToken(
-        token,
+        accessToken,
         config.jwt.jwt_secret as Secret
       );
-
+      console.log(verifiedUser);
       req.user = verifiedUser;
 
       if (roles.length && !roles.includes(verifiedUser.role)) {

@@ -52,7 +52,6 @@ const registerUserIntoDB = async (req: Request): Promise<any> => {
         name: true,
         email: true,
         phone: true,
-        role: true,
         status: true,
         bloodType: true,
         location: true,
@@ -95,6 +94,14 @@ const getAllDonarFromDB = async (params: any, options: TPaginationOptions) => {
     });
   }
 
+  andConditions.push({
+    AND: {
+      role: {
+        equals: UserRole.donor,
+      },
+    },
+  });
+
   const whereConditions: Prisma.UserWhereInput =
     andConditions.length > 0 ? { AND: andConditions } : {};
   console.log(sortBy, sortOrder);
@@ -110,8 +117,8 @@ const getAllDonarFromDB = async (params: any, options: TPaginationOptions) => {
       name: true,
       email: true,
       phone: true,
-      role: true,
       status: true,
+      role: true,
       bloodType: true,
       location: true,
       availability: true,
@@ -163,7 +170,7 @@ const createDonationRequestIntoDB = async (req: Request): Promise<any> => {
     ...req.body,
     requesterId: decodedToken.id,
   };
-
+  console.log(requestData);
   const result = await prisma.request.create({
     data: requestData,
     select: {

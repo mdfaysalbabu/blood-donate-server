@@ -7,7 +7,7 @@ import router from "./app/routes";
 
 const app: Application = express();
 
-app.use(cors());
+app.use(cors({ origin: "*", credentials: true }));
 
 // parser
 app.use(express.json());
