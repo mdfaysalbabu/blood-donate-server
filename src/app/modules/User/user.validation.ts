@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { Status, UserRole } from "../../../../prisma/generated/client";
 
 const registerUserSchema = z.object({
   name: z.string({ required_error: "Name field is required." }),
@@ -6,6 +7,8 @@ const registerUserSchema = z.object({
     .string({ required_error: "Email must be a valid email address." })
     .email(),
   phone: z.string({ required_error: "Phone must be a valid phone no" }),
+  role: z.enum([UserRole.admin, UserRole.donor, UserRole.user]).default("user"),
+  status: z.enum([Status.active, Status.deactive]).default("active"),
   password: z.string({ required_error: "Password must be included!" }),
   bloodType: z.string({ required_error: "Blood type is required!" }),
   location: z.string({ required_error: "Location is required!" }),
