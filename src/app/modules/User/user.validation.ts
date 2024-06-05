@@ -5,6 +5,7 @@ const registerUserSchema = z.object({
   email: z
     .string({ required_error: "Email must be a valid email address." })
     .email(),
+  phone: z.string({ required_error: "Phone must be a valid phone no" }),
   password: z.string({ required_error: "Password must be included!" }),
   bloodType: z.string({ required_error: "Blood type is required!" }),
   location: z.string({ required_error: "Location is required!" }),
@@ -17,7 +18,6 @@ const registerUserSchema = z.object({
 
 const donationRequestSchema = z.object({
   donorId: z.string({ required_error: "Donor ID is required." }),
-  phoneNumber: z.string({ required_error: "Phone number is required." }),
   dateOfDonation: z.string({
     required_error:
       "Date of donation is required and must be in the format YYYY-MM-DD.",

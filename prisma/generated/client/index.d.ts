@@ -2206,7 +2206,6 @@ export namespace Prisma {
     id: string | null
     donorId: string | null
     requesterId: string | null
-    phoneNumber: string | null
     dateOfDonation: string | null
     hospitalName: string | null
     hospitalAddress: string | null
@@ -2220,7 +2219,6 @@ export namespace Prisma {
     id: string | null
     donorId: string | null
     requesterId: string | null
-    phoneNumber: string | null
     dateOfDonation: string | null
     hospitalName: string | null
     hospitalAddress: string | null
@@ -2234,7 +2232,6 @@ export namespace Prisma {
     id: number
     donorId: number
     requesterId: number
-    phoneNumber: number
     dateOfDonation: number
     hospitalName: number
     hospitalAddress: number
@@ -2250,7 +2247,6 @@ export namespace Prisma {
     id?: true
     donorId?: true
     requesterId?: true
-    phoneNumber?: true
     dateOfDonation?: true
     hospitalName?: true
     hospitalAddress?: true
@@ -2264,7 +2260,6 @@ export namespace Prisma {
     id?: true
     donorId?: true
     requesterId?: true
-    phoneNumber?: true
     dateOfDonation?: true
     hospitalName?: true
     hospitalAddress?: true
@@ -2278,7 +2273,6 @@ export namespace Prisma {
     id?: true
     donorId?: true
     requesterId?: true
-    phoneNumber?: true
     dateOfDonation?: true
     hospitalName?: true
     hospitalAddress?: true
@@ -2365,7 +2359,6 @@ export namespace Prisma {
     id: string
     donorId: string
     requesterId: string
-    phoneNumber: string
     dateOfDonation: string
     hospitalName: string
     hospitalAddress: string
@@ -2396,7 +2389,6 @@ export namespace Prisma {
     id?: boolean
     donorId?: boolean
     requesterId?: boolean
-    phoneNumber?: boolean
     dateOfDonation?: boolean
     hospitalName?: boolean
     hospitalAddress?: boolean
@@ -2412,7 +2404,6 @@ export namespace Prisma {
     id?: boolean
     donorId?: boolean
     requesterId?: boolean
-    phoneNumber?: boolean
     dateOfDonation?: boolean
     hospitalName?: boolean
     hospitalAddress?: boolean
@@ -2438,7 +2429,6 @@ export namespace Prisma {
       id: string
       donorId: string
       requesterId: string
-      phoneNumber: string
       dateOfDonation: string
       hospitalName: string
       hospitalAddress: string
@@ -2846,7 +2836,6 @@ export namespace Prisma {
     readonly id: FieldRef<"Request", 'String'>
     readonly donorId: FieldRef<"Request", 'String'>
     readonly requesterId: FieldRef<"Request", 'String'>
-    readonly phoneNumber: FieldRef<"Request", 'String'>
     readonly dateOfDonation: FieldRef<"Request", 'String'>
     readonly hospitalName: FieldRef<"Request", 'String'>
     readonly hospitalAddress: FieldRef<"Request", 'String'>
@@ -4192,7 +4181,6 @@ export namespace Prisma {
     id: 'id',
     donorId: 'donorId',
     requesterId: 'requesterId',
-    phoneNumber: 'phoneNumber',
     dateOfDonation: 'dateOfDonation',
     hospitalName: 'hospitalName',
     hospitalAddress: 'hospitalAddress',
@@ -4455,7 +4443,6 @@ export namespace Prisma {
     id?: StringFilter<"Request"> | string
     donorId?: StringFilter<"Request"> | string
     requesterId?: StringFilter<"Request"> | string
-    phoneNumber?: StringFilter<"Request"> | string
     dateOfDonation?: StringFilter<"Request"> | string
     hospitalName?: StringFilter<"Request"> | string
     hospitalAddress?: StringFilter<"Request"> | string
@@ -4471,7 +4458,6 @@ export namespace Prisma {
     id?: SortOrder
     donorId?: SortOrder
     requesterId?: SortOrder
-    phoneNumber?: SortOrder
     dateOfDonation?: SortOrder
     hospitalName?: SortOrder
     hospitalAddress?: SortOrder
@@ -4490,7 +4476,6 @@ export namespace Prisma {
     NOT?: RequestWhereInput | RequestWhereInput[]
     donorId?: StringFilter<"Request"> | string
     requesterId?: StringFilter<"Request"> | string
-    phoneNumber?: StringFilter<"Request"> | string
     dateOfDonation?: StringFilter<"Request"> | string
     hospitalName?: StringFilter<"Request"> | string
     hospitalAddress?: StringFilter<"Request"> | string
@@ -4506,7 +4491,6 @@ export namespace Prisma {
     id?: SortOrder
     donorId?: SortOrder
     requesterId?: SortOrder
-    phoneNumber?: SortOrder
     dateOfDonation?: SortOrder
     hospitalName?: SortOrder
     hospitalAddress?: SortOrder
@@ -4526,7 +4510,6 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Request"> | string
     donorId?: StringWithAggregatesFilter<"Request"> | string
     requesterId?: StringWithAggregatesFilter<"Request"> | string
-    phoneNumber?: StringWithAggregatesFilter<"Request"> | string
     dateOfDonation?: StringWithAggregatesFilter<"Request"> | string
     hospitalName?: StringWithAggregatesFilter<"Request"> | string
     hospitalAddress?: StringWithAggregatesFilter<"Request"> | string
@@ -4729,7 +4712,6 @@ export namespace Prisma {
 
   export type RequestCreateInput = {
     id?: string
-    phoneNumber: string
     dateOfDonation: string
     hospitalName: string
     hospitalAddress: string
@@ -4745,7 +4727,6 @@ export namespace Prisma {
     id?: string
     donorId: string
     requesterId: string
-    phoneNumber: string
     dateOfDonation: string
     hospitalName: string
     hospitalAddress: string
@@ -4757,7 +4738,6 @@ export namespace Prisma {
 
   export type RequestUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
     dateOfDonation?: StringFieldUpdateOperationsInput | string
     hospitalName?: StringFieldUpdateOperationsInput | string
     hospitalAddress?: StringFieldUpdateOperationsInput | string
@@ -4773,7 +4753,6 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     donorId?: StringFieldUpdateOperationsInput | string
     requesterId?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
     dateOfDonation?: StringFieldUpdateOperationsInput | string
     hospitalName?: StringFieldUpdateOperationsInput | string
     hospitalAddress?: StringFieldUpdateOperationsInput | string
@@ -4787,7 +4766,6 @@ export namespace Prisma {
     id?: string
     donorId: string
     requesterId: string
-    phoneNumber: string
     dateOfDonation: string
     hospitalName: string
     hospitalAddress: string
@@ -4799,7 +4777,6 @@ export namespace Prisma {
 
   export type RequestUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
     dateOfDonation?: StringFieldUpdateOperationsInput | string
     hospitalName?: StringFieldUpdateOperationsInput | string
     hospitalAddress?: StringFieldUpdateOperationsInput | string
@@ -4813,7 +4790,6 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     donorId?: StringFieldUpdateOperationsInput | string
     requesterId?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
     dateOfDonation?: StringFieldUpdateOperationsInput | string
     hospitalName?: StringFieldUpdateOperationsInput | string
     hospitalAddress?: StringFieldUpdateOperationsInput | string
@@ -5076,7 +5052,6 @@ export namespace Prisma {
     id?: SortOrder
     donorId?: SortOrder
     requesterId?: SortOrder
-    phoneNumber?: SortOrder
     dateOfDonation?: SortOrder
     hospitalName?: SortOrder
     hospitalAddress?: SortOrder
@@ -5090,7 +5065,6 @@ export namespace Prisma {
     id?: SortOrder
     donorId?: SortOrder
     requesterId?: SortOrder
-    phoneNumber?: SortOrder
     dateOfDonation?: SortOrder
     hospitalName?: SortOrder
     hospitalAddress?: SortOrder
@@ -5104,7 +5078,6 @@ export namespace Prisma {
     id?: SortOrder
     donorId?: SortOrder
     requesterId?: SortOrder
-    phoneNumber?: SortOrder
     dateOfDonation?: SortOrder
     hospitalName?: SortOrder
     hospitalAddress?: SortOrder
@@ -5562,7 +5535,6 @@ export namespace Prisma {
 
   export type RequestCreateWithoutDonorInput = {
     id?: string
-    phoneNumber: string
     dateOfDonation: string
     hospitalName: string
     hospitalAddress: string
@@ -5576,7 +5548,6 @@ export namespace Prisma {
   export type RequestUncheckedCreateWithoutDonorInput = {
     id?: string
     requesterId: string
-    phoneNumber: string
     dateOfDonation: string
     hospitalName: string
     hospitalAddress: string
@@ -5598,7 +5569,6 @@ export namespace Prisma {
 
   export type RequestCreateWithoutRequesterInput = {
     id?: string
-    phoneNumber: string
     dateOfDonation: string
     hospitalName: string
     hospitalAddress: string
@@ -5612,7 +5582,6 @@ export namespace Prisma {
   export type RequestUncheckedCreateWithoutRequesterInput = {
     id?: string
     donorId: string
-    phoneNumber: string
     dateOfDonation: string
     hospitalName: string
     hospitalAddress: string
@@ -5684,7 +5653,6 @@ export namespace Prisma {
     id?: StringFilter<"Request"> | string
     donorId?: StringFilter<"Request"> | string
     requesterId?: StringFilter<"Request"> | string
-    phoneNumber?: StringFilter<"Request"> | string
     dateOfDonation?: StringFilter<"Request"> | string
     hospitalName?: StringFilter<"Request"> | string
     hospitalAddress?: StringFilter<"Request"> | string
@@ -5977,7 +5945,6 @@ export namespace Prisma {
   export type RequestCreateManyDonorInput = {
     id?: string
     requesterId: string
-    phoneNumber: string
     dateOfDonation: string
     hospitalName: string
     hospitalAddress: string
@@ -5990,7 +5957,6 @@ export namespace Prisma {
   export type RequestCreateManyRequesterInput = {
     id?: string
     donorId: string
-    phoneNumber: string
     dateOfDonation: string
     hospitalName: string
     hospitalAddress: string
@@ -6002,7 +5968,6 @@ export namespace Prisma {
 
   export type RequestUpdateWithoutDonorInput = {
     id?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
     dateOfDonation?: StringFieldUpdateOperationsInput | string
     hospitalName?: StringFieldUpdateOperationsInput | string
     hospitalAddress?: StringFieldUpdateOperationsInput | string
@@ -6016,7 +5981,6 @@ export namespace Prisma {
   export type RequestUncheckedUpdateWithoutDonorInput = {
     id?: StringFieldUpdateOperationsInput | string
     requesterId?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
     dateOfDonation?: StringFieldUpdateOperationsInput | string
     hospitalName?: StringFieldUpdateOperationsInput | string
     hospitalAddress?: StringFieldUpdateOperationsInput | string
@@ -6029,7 +5993,6 @@ export namespace Prisma {
   export type RequestUncheckedUpdateManyWithoutDonorInput = {
     id?: StringFieldUpdateOperationsInput | string
     requesterId?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
     dateOfDonation?: StringFieldUpdateOperationsInput | string
     hospitalName?: StringFieldUpdateOperationsInput | string
     hospitalAddress?: StringFieldUpdateOperationsInput | string
@@ -6041,7 +6004,6 @@ export namespace Prisma {
 
   export type RequestUpdateWithoutRequesterInput = {
     id?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
     dateOfDonation?: StringFieldUpdateOperationsInput | string
     hospitalName?: StringFieldUpdateOperationsInput | string
     hospitalAddress?: StringFieldUpdateOperationsInput | string
@@ -6055,7 +6017,6 @@ export namespace Prisma {
   export type RequestUncheckedUpdateWithoutRequesterInput = {
     id?: StringFieldUpdateOperationsInput | string
     donorId?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
     dateOfDonation?: StringFieldUpdateOperationsInput | string
     hospitalName?: StringFieldUpdateOperationsInput | string
     hospitalAddress?: StringFieldUpdateOperationsInput | string
@@ -6068,7 +6029,6 @@ export namespace Prisma {
   export type RequestUncheckedUpdateManyWithoutRequesterInput = {
     id?: StringFieldUpdateOperationsInput | string
     donorId?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
     dateOfDonation?: StringFieldUpdateOperationsInput | string
     hospitalName?: StringFieldUpdateOperationsInput | string
     hospitalAddress?: StringFieldUpdateOperationsInput | string

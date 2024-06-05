@@ -37,7 +37,6 @@ model Request {
   id              String        @id @default(uuid())
   donorId         String
   requesterId     String
-  phoneNumber     String
   dateOfDonation  String
   hospitalName    String
   hospitalAddress String

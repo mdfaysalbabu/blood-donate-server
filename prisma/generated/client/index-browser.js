@@ -139,7 +139,6 @@ exports.Prisma.RequestScalarFieldEnum = {
   id: 'id',
   donorId: 'donorId',
   requesterId: 'requesterId',
-  phoneNumber: 'phoneNumber',
   dateOfDonation: 'dateOfDonation',
   hospitalName: 'hospitalName',
   hospitalAddress: 'hospitalAddress',
