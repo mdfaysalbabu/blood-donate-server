@@ -16,7 +16,7 @@ model User {
   email             String       @unique
   phone             String       @default("")
   password          String
-  role              UserRole     @default(user)
+  role              UserRole     @default(donor)
   isDonateBlood     Boolean      @default(true)
   status            Status       @default(active)
   bloodType         String
@@ -72,7 +72,7 @@ enum RequestStatus {
 }
 
 enum UserRole {
-  user
+  requester
   admin
   donor
 }

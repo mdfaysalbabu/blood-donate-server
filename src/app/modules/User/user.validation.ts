@@ -7,7 +7,9 @@ const registerUserSchema = z.object({
     .string({ required_error: "Email must be a valid email address." })
     .email(),
   phone: z.string({ required_error: "Phone must be a valid phone no" }),
-  role: z.enum([UserRole.admin, UserRole.donor, UserRole.user]).default("user"),
+  role: z
+    .enum([UserRole.admin, UserRole.donor, UserRole.requester])
+    .default("donor"),
   status: z.enum([Status.active, Status.deactive]).default("active"),
   password: z.string({ required_error: "Password must be included!" }),
   bloodType: z.string({ required_error: "Blood type is required!" }),

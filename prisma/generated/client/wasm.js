@@ -168,7 +168,7 @@ exports.Prisma.QueryMode = {
   insensitive: 'insensitive'
 };
 exports.UserRole = exports.$Enums.UserRole = {
-  user: 'user',
+  requester: 'requester',
   admin: 'admin',
   donor: 'donor'
 };

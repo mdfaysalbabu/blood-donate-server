@@ -12,19 +12,19 @@ router.get("/donor/:id", UserController.getSingleDoner);
 
 router.get(
   "/donation-request",
-  auth(UserRole.admin, UserRole.user),
+  auth(UserRole.admin, UserRole.requester),
   UserController.getDonationRequestsForDonor
 );
 
 router.get(
   "/my-profile",
-  auth(UserRole.admin, UserRole.donor, UserRole.user),
+  auth(UserRole.admin, UserRole.donor, UserRole.requester),
   UserController.getUserProfile
 );
 
 router.put(
   "/my-profile",
-  auth(UserRole.admin, UserRole.donor, UserRole.user),
+  auth(UserRole.admin, UserRole.donor, UserRole.requester),
   validateRequest(UserValidation.updateUserProfileSchema),
   UserController.updateUserProfile
 );
@@ -37,7 +37,7 @@ router.post(
 
 router.post(
   "/donation-request",
-  auth(UserRole.user),
+  auth(UserRole.requester),
   validateRequest(UserValidation.donationRequestSchema),
   UserController.createDonationRequest
 );
