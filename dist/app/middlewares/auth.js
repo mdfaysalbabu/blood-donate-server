@@ -16,7 +16,7 @@ const http_status_1 = __importDefault(require("http-status"));
 const config_1 = __importDefault(require("../../config"));
 const jwtToken_1 = require("../constants/jwtToken");
 const ApiError_1 = __importDefault(require("../errors/ApiError"));
-const auth = () => {
+const auth = (...roles) => {
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
         try {
             const token = req.headers.authorization;
@@ -25,6 +25,9 @@ const auth = () => {
             }
             const verifiedUser = jwtToken_1.jwtToken.verifyToken(token, config_1.default.jwt.jwt_secret);
             req.user = verifiedUser;
+            if (roles.length && !roles.includes(verifiedUser.role)) {
+                throw new ApiError_1.default(http_status_1.default.FORBIDDEN, "Forbidden!");
+            }
             next();
         }
         catch (err) {

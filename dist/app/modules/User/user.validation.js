@@ -36,9 +36,14 @@ const updateUserProfileSchema = zod_1.z.object({
     age: zod_1.z.number().optional(),
     lastDonationDate: zod_1.z.date().optional(),
 });
+const updateUserRoleStatusSchema = zod_1.z.object({
+    status: zod_1.z.string().optional(),
+    role: zod_1.z.string().optional(),
+});
 exports.UserValidation = {
     registerUserSchema,
     donationRequestSchema,
     updateRequestStatusSchema,
     updateUserProfileSchema,
+    updateUserRoleStatusSchema,
 };

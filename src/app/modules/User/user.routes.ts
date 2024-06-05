@@ -7,7 +7,7 @@ import { UserValidation } from "./user.validation";
 const router = express.Router();
 
 router.get("/donor-list", UserController.getAllDoner);
-router.get("/donors/:id", UserController.getSingleDoner);
+router.get("/donor/:id", UserController.getSingleDoner);
 
 router.get(
   "/donation-request",

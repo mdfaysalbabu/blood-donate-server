@@ -58,6 +58,16 @@ const getAllDoner = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, vo
         data: result.data,
     });
 }));
+const getSingleDoner = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.params;
+    const result = yield user_service_1.UserService.getSingleDonarFromDB(id);
+    (0, sendResponse_1.default)(res, {
+        success: true,
+        statusCode: 200,
+        message: "Donor successfully found",
+        data: result,
+    });
+}));
 const createDonationRequest = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield user_service_1.UserService.createDonationRequestIntoDB(req);
     (0, sendResponse_1.default)(res, {
@@ -111,6 +121,16 @@ const updateUserProfile = (0, catchAsync_1.default)((req, res) => __awaiter(void
         data: result,
     });
 }));
+const updateUserRoleStatusIntoDB = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    // Call the service to update the user profile
+    const result = yield user_service_1.UserService.updateUserRoleStatusIntoDB(req.body);
+    (0, sendResponse_1.default)(res, {
+        statusCode: 200,
+        success: true,
+        message: "User profile updated successfully",
+        data: result,
+    });
+}));
 exports.UserController = {
     registerUser,
     getAllDoner,
@@ -119,4 +139,6 @@ exports.UserController = {
     updateRequestStatus,
     getUserProfile,
     updateUserProfile,
+    getSingleDoner,
+    updateUserRoleStatusIntoDB,
 };

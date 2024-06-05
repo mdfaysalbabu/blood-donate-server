@@ -34,6 +34,7 @@ export type UserProfile = $Result.DefaultSelection<Prisma.$UserProfilePayload>
  */
 export namespace $Enums {
   export const UserRole: {
+  superAdmin: 'superAdmin',
   user: 'user',
   admin: 'admin',
   donor: 'donor'

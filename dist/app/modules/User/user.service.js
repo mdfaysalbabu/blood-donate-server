@@ -127,6 +127,14 @@ const getAllDonarFromDB = (params, options) => __awaiter(void 0, void 0, void 0,
         data: result,
     };
 });
+const getSingleDonarFromDB = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield prisma_1.default.user.findUnique({
+        where: {
+            id,
+        },
+    });
+    return result;
+});
 const createDonationRequestIntoDB = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const token = req.headers.authorization;
     if (!token) {
@@ -274,6 +282,22 @@ const updateUserProfileIntoDB = (req, data) => __awaiter(void 0, void 0, void 0,
     });
     return updatedProfile;
 });
+const updateUserRoleStatusIntoDB = (payload) => __awaiter(void 0, void 0, void 0, function* () {
+    const updateData = {};
+    if (payload.status) {
+        updateData.status = payload.status;
+    }
+    if (payload.role) {
+        updateData.role = payload.role;
+    }
+    const updatedProfile = yield prisma_1.default.user.update({
+        where: {
+            id: payload.userId,
+        },
+        data: updateData,
+    });
+    return updatedProfile;
+});
 exports.UserService = {
     registerUserIntoDB,
     getAllDonarFromDB,
@@ -282,4 +306,6 @@ exports.UserService = {
     updateRequestStatusIntoDB,
     getUserProfileFromDB,
     updateUserProfileIntoDB,
+    getSingleDonarFromDB,
+    updateUserRoleStatusIntoDB,
 };

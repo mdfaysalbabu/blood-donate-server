@@ -8,82 +8,78 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
-
 // User Model
 
 model User {
-    id               String      @id @default(uuid())
-    name             String
-    email            String      @unique
-    phone String @default("")
-    password         String
-    role UserRole @default(donor)
-    isDonateBlood Boolean @default(true)
-    status Status @default(active)
-    bloodType        String    
-    location         String
-    availability     Boolean     @default(false)
-    createdAt        DateTime    @default(now())
-    updatedAt        DateTime    @updatedAt
-    userProfile      UserProfile?
-    donorRequests    Request[]   @relation("donorRequests")
-    requesterRequests Request[]   @relation("requesterRequests")
-    
-    @@map("users")
-}
+  id                String       @id @default(uuid())
+  name              String
+  email             String       @unique
+  phone             String       @default("")
+  password          String
+  role              UserRole     @default(user)
+  isDonateBlood     Boolean      @default(true)
+  status            Status       @default(active)
+  bloodType         String
+  location          String
+  availability      Boolean      @default(false)
+  createdAt         DateTime     @default(now())
+  updatedAt         DateTime     @updatedAt
+  userProfile       UserProfile?
+  donorRequests     Request[]    @relation("donorRequests")
+  requesterRequests Request[]    @relation("requesterRequests")
 
+  @@map("users")
+}
 
 // Request Model
 
 model Request {
-    id             String    @id @default(uuid())
-    donorId        String
-    requesterId    String
-    phoneNumber    String
-    dateOfDonation String
-    hospitalName   String
-    hospitalAddress String
-    reason         String
-    requestStatus  RequestStatus  @default(PENDING)
-    createdAt      DateTime  @default(now())
-    updatedAt      DateTime  @updatedAt
-    donor          User      @relation("donorRequests", fields: [donorId], references: [id])
-    requester      User      @relation("requesterRequests", fields: [requesterId], references: [id])
-    
-   @@map("requests")
-}
+  id              String        @id @default(uuid())
+  donorId         String
+  requesterId     String
+  phoneNumber     String
+  dateOfDonation  String
+  hospitalName    String
+  hospitalAddress String
+  reason          String
+  requestStatus   RequestStatus @default(PENDING)
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+  donor           User          @relation("donorRequests", fields: [donorId], references: [id])
+  requester       User          @relation("requesterRequests", fields: [requesterId], references: [id])
 
+  @@map("requests")
+}
 
 // UserProfile Model
 
 model UserProfile {
-    id               String    @id @default(uuid())
-    userId           String    @unique
-    bio              String
-    age              Int
-    lastDonationDate String
-    createdAt        DateTime  @default(now())
-    updatedAt        DateTime  @updatedAt
-    user             User      @relation(fields: [userId], references: [id])
-    
-    @@map("userProfiles")
+  id               String   @id @default(uuid())
+  userId           String   @unique
+  bio              String
+  age              Int
+  lastDonationDate String
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  user             User     @relation(fields: [userId], references: [id])
+
+  @@map("userProfiles")
 }
 
-
 enum RequestStatus {
-    PENDING
-    APPROVED
-    REJECTED
+  PENDING
+  APPROVED
+  REJECTED
 }
 
 enum UserRole {
-    user
-    admin
-    donor
+  superAdmin
+  user
+  admin
+  donor
 }
 
 enum Status {
-    active
-    deactive
+  active
+  deactive
 }
