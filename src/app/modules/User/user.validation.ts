@@ -39,9 +39,15 @@ const updateUserProfileSchema = z.object({
   lastDonationDate: z.date().optional(),
 });
 
+const updateUserRoleStatusSchema = z.object({
+  status: z.string().optional(),
+  role: z.string().optional(),
+});
+
 export const UserValidation = {
   registerUserSchema,
   donationRequestSchema,
   updateRequestStatusSchema,
   updateUserProfileSchema,
+  updateUserRoleStatusSchema,
 };

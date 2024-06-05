@@ -46,6 +46,17 @@ const getAllDoner = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const getSingleDoner = catchAsync(async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const result = await UserService.getSingleDonarFromDB(id);
+  sendResponse(res, {
+    success: true,
+    statusCode: 200,
+    message: "Donor successfully found",
+    data: result,
+  });
+});
+
 const createDonationRequest = catchAsync(
   async (req: Request, res: Response) => {
     const result = await UserService.createDonationRequestIntoDB(req);
@@ -114,6 +125,18 @@ const updateUserProfile = catchAsync(async (req: Request, res: Response) => {
     data: result,
   });
 });
+const updateUserRoleStatusIntoDB = catchAsync(
+  async (req: Request, res: Response) => {
+    // Call the service to update the user profile
+    const result = await UserService.updateUserRoleStatusIntoDB(req.body);
+    sendResponse(res, {
+      statusCode: 200,
+      success: true,
+      message: "User profile updated successfully",
+      data: result,
+    });
+  }
+);
 
 export const UserController = {
   registerUser,
@@ -123,4 +146,6 @@ export const UserController = {
   updateRequestStatus,
   getUserProfile,
   updateUserProfile,
+  getSingleDoner,
+  updateUserRoleStatusIntoDB,
 };

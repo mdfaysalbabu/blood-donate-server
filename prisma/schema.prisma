@@ -9,13 +9,18 @@ datasource db {
 }
 
 
+
 // User Model
 
 model User {
     id               String      @id @default(uuid())
     name             String
     email            String      @unique
+    phone String @default("")
     password         String
+    role UserRole @default(donor)
+    
+    status Status @default(active)
     bloodType        String    
     location         String
     availability     Boolean     @default(false)
@@ -36,6 +41,7 @@ model Request {
     donorId        String
     requesterId    String
     phoneNumber    String
+    isDonateBlood Boolean @default(true)
     dateOfDonation String
     hospitalName   String
     hospitalAddress String
@@ -70,4 +76,15 @@ enum RequestStatus {
     PENDING
     APPROVED
     REJECTED
+}
+
+enum UserRole {
+    user
+    admin
+    donor
+}
+
+enum Status {
+    active
+    deactive
 }

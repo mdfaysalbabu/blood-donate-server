@@ -123,7 +123,10 @@ exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
   name: 'name',
   email: 'email',
+  phone: 'phone',
   password: 'password',
+  role: 'role',
+  status: 'status',
   bloodType: 'bloodType',
   location: 'location',
   availability: 'availability',
@@ -136,6 +139,7 @@ exports.Prisma.RequestScalarFieldEnum = {
   donorId: 'donorId',
   requesterId: 'requesterId',
   phoneNumber: 'phoneNumber',
+  isDonateBlood: 'isDonateBlood',
   dateOfDonation: 'dateOfDonation',
   hospitalName: 'hospitalName',
   hospitalAddress: 'hospitalAddress',
@@ -164,6 +168,17 @@ exports.Prisma.QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
 };
+exports.UserRole = exports.$Enums.UserRole = {
+  user: 'user',
+  admin: 'admin',
+  donor: 'donor'
+};
+
+exports.Status = exports.$Enums.Status = {
+  active: 'active',
+  deactive: 'deactive'
+};
+
 exports.RequestStatus = exports.$Enums.RequestStatus = {
   PENDING: 'PENDING',
   APPROVED: 'APPROVED',

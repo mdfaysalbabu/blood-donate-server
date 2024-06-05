@@ -7,6 +7,7 @@ import { UserValidation } from "./user.validation";
 const router = express.Router();
 
 router.get("/donor-list", UserController.getAllDoner);
+router.get("/donors/:id", UserController.getSingleDoner);
 
 router.get(
   "/donation-request",
@@ -41,6 +42,13 @@ router.put(
   auth(),
   validateRequest(UserValidation.updateRequestStatusSchema),
   UserController.updateRequestStatus
+);
+
+router.put(
+  "/manageUser",
+  auth(),
+  validateRequest(UserValidation.updateUserRoleStatusSchema),
+  UserController.updateUserRoleStatusIntoDB
 );
 
 export const UserRoutes = router;

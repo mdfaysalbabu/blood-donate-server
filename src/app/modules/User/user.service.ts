@@ -1,9 +1,14 @@
-import { RequestStatus, UserProfile } from "@prisma/client";
 import bcrypt from "bcrypt";
 import { Request } from "express";
 import httpStatus from "http-status";
 import { Secret } from "jsonwebtoken";
-import { Prisma } from "../../../../prisma/generated/client";
+import {
+  Prisma,
+  RequestStatus,
+  Status,
+  UserProfile,
+  UserRole,
+} from "../../../../prisma/generated/client";
 import config from "../../../config";
 import { jwtToken } from "../../constants/jwtToken";
 import { pagination } from "../../constants/pagination";
@@ -121,6 +126,14 @@ const getAllDonarFromDB = async (params: any, options: TPaginationOptions) => {
     },
     data: result,
   };
+};
+const getSingleDonarFromDB = async (id: string) => {
+  const result = await prisma.user.findUnique({
+    where: {
+      id,
+    },
+  });
+  return result;
 };
 
 const createDonationRequestIntoDB = async (req: Request): Promise<any> => {
@@ -339,6 +352,29 @@ const updateUserProfileIntoDB = async (
   return updatedProfile;
 };
 
+type UpdateUser = {
+  userId: string;
+  status: Status;
+  role: UserRole;
+};
+
+const updateUserRoleStatusIntoDB = async (payload: UpdateUser) => {
+  const updateData: UpdateUser = {} as UpdateUser;
+  if (payload.status) {
+    updateData.status = payload.status;
+  }
+  if (payload.role) {
+    updateData.role = payload.role;
+  }
+  const updatedProfile = await prisma.user.update({
+    where: {
+      id: payload.userId,
+    },
+    data: updateData,
+  });
+  return updatedProfile;
+};
+
 export const UserService = {
   registerUserIntoDB,
   getAllDonarFromDB,
@@ -347,4 +383,6 @@ export const UserService = {
   updateRequestStatusIntoDB,
   getUserProfileFromDB,
   updateUserProfileIntoDB,
+  getSingleDonarFromDB,
+  updateUserRoleStatusIntoDB,
 };
