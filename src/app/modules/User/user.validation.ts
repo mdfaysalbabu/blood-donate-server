@@ -13,6 +13,7 @@ const registerUserSchema = z.object({
   status: z.enum([Status.active, Status.deactive]).default("active"),
   password: z.string({ required_error: "Password must be included!" }),
   bloodType: z.string({ required_error: "Blood type is required!" }),
+  isDonateBlood: z.boolean().default(true),
   location: z.string({ required_error: "Location is required!" }),
   age: z.number({ required_error: "Age must be at least 1!" }).int(),
   bio: z.string({ required_error: "Bio is required!" }),

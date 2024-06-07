@@ -13,7 +13,6 @@ const auth = (...roles: string[]) => {
   ) => {
     try {
       const accessToken = req.headers.authorization;
-      console.log(accessToken);
 
       if (!accessToken) {
         throw new ApiError(httpStatus.UNAUTHORIZED, "You are not authorized!");
@@ -23,7 +22,6 @@ const auth = (...roles: string[]) => {
         accessToken,
         config.jwt.jwt_secret as Secret
       );
-      console.log(verifiedUser);
       req.user = verifiedUser;
 
       if (roles.length && !roles.includes(verifiedUser.role)) {

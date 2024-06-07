@@ -9,4 +9,5 @@ export const filterableFields: string[] = [
   "bloodType",
   "availability",
   "searchTerm",
+  "location",
 ];

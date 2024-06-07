@@ -34,7 +34,6 @@ const getAllDoner = catchAsync(async (req: Request, res: Response) => {
     req.query.availability = false as unknown as string;
   }
   const filters = pick(req.query, filterableFields);
-  console.log(filters);
   const options = pick(req.query, ["limit", "page", "sortBy", "sortOrder"]);
   const result = await UserService.getAllDonarFromDB(filters, options);
   sendResponse(res, {
@@ -46,6 +45,15 @@ const getAllDoner = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const getAllUser = catchAsync(async (req: Request, res: Response) => {
+  const result = await UserService.getAllUserFromDB();
+  sendResponse(res, {
+    success: true,
+    statusCode: 200,
+    message: "Users successfully found",
+    data: result,
+  });
+});
 const getSingleDoner = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
   const result = await UserService.getSingleDonarFromDB(id);
@@ -148,4 +156,5 @@ export const UserController = {
   updateUserProfile,
   getSingleDoner,
   updateUserRoleStatus,
+  getAllUser,
 };

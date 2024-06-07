@@ -79,6 +79,7 @@ const refreshToken = async (token: string) => {
 };
 
 const changePassword = async (user: any, payload: any) => {
+  console.log({ payload });
   const userData = await prisma.user.findUniqueOrThrow({
     where: {
       email: user.email,
@@ -90,7 +91,7 @@ const changePassword = async (user: any, payload: any) => {
     payload.currentPassword,
     userData.password
   );
-
+  console.log({ isCorrectPassword, payload, userData });
   if (!isCorrectPassword) {
     throw new Error("Password incorrect!");
   }
@@ -105,7 +106,7 @@ const changePassword = async (user: any, payload: any) => {
       password: hashedPassword,
     },
   });
-
+  console.log("cahnge");
   return {
     message: "Password changed successfully!",
   };

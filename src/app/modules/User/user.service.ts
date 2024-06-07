@@ -71,7 +71,7 @@ const registerUserIntoDB = async (req: Request): Promise<any> => {
 const getAllDonarFromDB = async (params: any, options: TPaginationOptions) => {
   const { page, limit, skip, sortBy, sortOrder } =
     pagination.calculatePagination(options);
-  const { searchTerm, ...filterData } = params;
+  const { availability, searchTerm, ...filterData } = params;
   const andConditions: Prisma.UserWhereInput[] = [];
 
   if (searchTerm) {
@@ -90,11 +90,23 @@ const getAllDonarFromDB = async (params: any, options: TPaginationOptions) => {
       AND: Object.keys(filterData).map((key) => ({
         [key]: {
           equals: (filterData as any)[key],
+          mode: "insensitive",
         },
       })),
     });
   }
 
+  if (availability === true || availability === false) {
+    andConditions.push({
+      AND: [
+        {
+          availability: {
+            equals: availability,
+          },
+        },
+      ],
+    });
+  }
   andConditions.push({
     AND: {
       role: {
@@ -105,7 +117,6 @@ const getAllDonarFromDB = async (params: any, options: TPaginationOptions) => {
 
   const whereConditions: Prisma.UserWhereInput =
     andConditions.length > 0 ? { AND: andConditions } : {};
-  console.log(sortBy, sortOrder);
   const result = await prisma.user.findMany({
     where: whereConditions,
     skip,
@@ -150,6 +161,10 @@ const getSingleDonarFromDB = async (id: string) => {
   });
   return result;
 };
+const getAllUserFromDB = async () => {
+  const result = await prisma.user.findMany();
+  return result;
+};
 
 const createDonationRequestIntoDB = async (req: Request): Promise<any> => {
   const token = req.headers.authorization;
@@ -158,7 +173,6 @@ const createDonationRequestIntoDB = async (req: Request): Promise<any> => {
     throw new ApiError(httpStatus.UNAUTHORIZED, "Unauthorized Access!");
   }
 
-  // Decoding the token to get the requester's details
   const decodedToken = jwtToken.verifyToken(
     token,
     config.jwt.jwt_secret as Secret
@@ -171,7 +185,6 @@ const createDonationRequestIntoDB = async (req: Request): Promise<any> => {
     ...req.body,
     requesterId: decodedToken.id,
   };
-  console.log(requestData);
   const result = await prisma.request.create({
     data: requestData,
     select: {
@@ -406,4 +419,5 @@ export const UserService = {
   updateUserProfileIntoDB,
   getSingleDonarFromDB,
   updateUserRoleStatusIntoDB,
+  getAllUserFromDB,
 };

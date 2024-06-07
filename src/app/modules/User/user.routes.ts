@@ -9,6 +9,7 @@ const router = express.Router();
 
 router.get("/donors", UserController.getAllDoner);
 router.get("/donor/:id", UserController.getSingleDoner);
+router.get("/users", UserController.getAllUser);
 
 router.get(
   "/donation-request",

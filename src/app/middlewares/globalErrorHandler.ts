@@ -10,6 +10,7 @@ const globalErrorHandler = (
   next: NextFunction
 ) => {
   // Handling Zod validation errors
+  console.log(error);
   if (error instanceof ZodError) {
     const issues = error.errors;
     const formattedErrors = issues.map((issue: any) => ({
