@@ -153,7 +153,7 @@ const getAllDonarFromDB = async (params: any, options: TPaginationOptions) => {
     data: result,
   };
 };
-const getSingleDonarFromDB = async (id: string) => {
+const getSingleUserFromDB = async (id: string) => {
   const result = await prisma.user.findUnique({
     where: {
       id,
@@ -340,7 +340,9 @@ const getUserProfileFromDB = async (req: Request): Promise<any> => {
     select: {
       id: true,
       name: true,
+      phone: true,
       email: true,
+      isDonateBlood: true,
       bloodType: true,
       location: true,
       availability: true,
@@ -390,6 +392,7 @@ type UpdateUser = {
 
 const updateUserRoleStatusIntoDB = async (payload: UpdateUser) => {
   const updateData: Partial<UpdateUser> = {};
+  console.log(payload);
 
   if (payload.status !== undefined) {
     updateData.status = payload.status;
@@ -405,7 +408,7 @@ const updateUserRoleStatusIntoDB = async (payload: UpdateUser) => {
     },
     data: updateData,
   });
-
+  console.log(updatedProfile);
   return updatedProfile;
 };
 
@@ -417,7 +420,7 @@ export const UserService = {
   updateRequestStatusIntoDB,
   getUserProfileFromDB,
   updateUserProfileIntoDB,
-  getSingleDonarFromDB,
+  getSingleUserFromDB,
   updateUserRoleStatusIntoDB,
   getAllUserFromDB,
 };

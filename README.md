@@ -30,7 +30,15 @@
 
 ---
 
-[https://drive.google.com/file/d/19AEuGSDBf9lUWQWNJVMP3-Rs0gLY4KU2](https://drive.google.com/file/d/19AEuGSDBf9lUWQWNJVMP3-Rs0gLY4KU2)
+[https://drive.google.com/drive/folders/1mGZ5aM-DeeRx6K4_NmYVkmV7eHghZaEy](https://drive.google.com/drive/folders/1mGZ5aM-DeeRx6K4_NmYVkmV7eHghZaEy)
+
+## Login Credindials:
+
+---
+
+(admin: email: admin@gmail.com, password: admin123)
+(donor: email: donor@gmail.com, password: donor123)
+(requester: email: requester@gmail.com, password: requester123)
 
 ## **_`Used Technologies`_**
 

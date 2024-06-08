@@ -54,9 +54,9 @@ const getAllUser = catchAsync(async (req: Request, res: Response) => {
     data: result,
   });
 });
-const getSingleDoner = catchAsync(async (req: Request, res: Response) => {
+const getSingleUser = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
-  const result = await UserService.getSingleDonarFromDB(id);
+  const result = await UserService.getSingleUserFromDB(id);
   sendResponse(res, {
     success: true,
     statusCode: 200,
@@ -154,7 +154,7 @@ export const UserController = {
   updateRequestStatus,
   getUserProfile,
   updateUserProfile,
-  getSingleDoner,
+  getSingleUser,
   updateUserRoleStatus,
   getAllUser,
 };

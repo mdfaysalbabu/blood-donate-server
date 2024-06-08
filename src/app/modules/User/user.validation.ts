@@ -42,7 +42,9 @@ const updateRequestStatusSchema = z.object({
 const updateUserProfileSchema = z.object({
   bio: z.string().optional(),
   age: z.number().optional(),
-  lastDonationDate: z.date().optional(),
+  lastDonationDate: z.string().optional(),
+  phone: z.string().optional(),
+  location: z.string().min(1, "Please enter your address!").optional(),
 });
 
 const updateUserRoleStatusSchema = z.object({
