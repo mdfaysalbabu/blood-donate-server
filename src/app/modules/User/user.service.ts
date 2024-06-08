@@ -238,26 +238,64 @@ const getDonationRequestsForDonorFromDB = async (
     config.jwt.jwt_secret as Secret
   ) as {
     id: string;
+    role: string;
   };
+  const donor = {
+    requester: {
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        phone: true,
+        location: true,
+        bloodType: true,
+        availability: true,
+      },
+    },
+  };
+  const requester = {
+    donor: {
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        phone: true,
+        location: true,
+        bloodType: true,
+        availability: true,
+      },
+    },
+  };
+  console.log(decodedToken);
+
+  const requesterData = { requesterId: decodedToken.id };
+  const donorData = { donorId: decodedToken.id };
+  const includeOption = decodedToken?.role === "donor" ? donor : requester;
+  const whereOption =
+    decodedToken?.role === "donor" ? donorData : requesterData;
 
   const result = await prisma.request.findMany({
     where: {
-      donorId: decodedToken.id,
+      // donorId: decodedToken.id,
+      ...whereOption,
     },
     include: {
-      requester: {
-        select: {
-          id: true,
-          name: true,
-          email: true,
-          phone: true,
-          location: true,
-          bloodType: true,
-          availability: true,
-        },
-      },
+      ...includeOption,
+      // requester: {
+      //   select: {
+      //     id: true,
+      //     name: true,
+      //     email: true,
+      //     phone: true,
+      //     location: true,
+      //     bloodType: true,
+      //     availability: true,
+      //   },
+      // },
     },
   });
+
+  console.log(result, decodedToken);
 
   return result;
 };
