@@ -13,7 +13,7 @@ router.get("/users", UserController.getAllUser);
 
 router.get(
   "/donation-request",
-  auth(UserRole.admin, UserRole.donor),
+  auth(UserRole.admin, UserRole.donor, UserRole.requester),
   UserController.getDonationRequestsForDonor
 );
 
