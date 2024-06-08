@@ -181,6 +181,10 @@ const createDonationRequestIntoDB = async (req: Request): Promise<any> => {
     name: string;
     email: string;
   };
+  console.log(decodedToken);
+  if (!decodedToken) {
+    throw new ApiError(httpStatus.UNAUTHORIZED, "Unauthorized Access!");
+  }
   const requestData = {
     ...req.body,
     requesterId: decodedToken.id,
@@ -215,7 +219,7 @@ const createDonationRequestIntoDB = async (req: Request): Promise<any> => {
       },
     },
   });
-
+  console.log(result);
   return result;
 };
 

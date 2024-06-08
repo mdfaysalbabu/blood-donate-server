@@ -15,6 +15,7 @@ const registerUserSchema = zod_1.z.object({
     status: zod_1.z.enum([client_1.Status.active, client_1.Status.deactive]).default("active"),
     password: zod_1.z.string({ required_error: "Password must be included!" }),
     bloodType: zod_1.z.string({ required_error: "Blood type is required!" }),
+    isDonateBlood: zod_1.z.boolean().default(true),
     location: zod_1.z.string({ required_error: "Location is required!" }),
     age: zod_1.z.number({ required_error: "Age must be at least 1!" }).int(),
     bio: zod_1.z.string({ required_error: "Bio is required!" }),
@@ -39,7 +40,9 @@ const updateRequestStatusSchema = zod_1.z.object({
 const updateUserProfileSchema = zod_1.z.object({
     bio: zod_1.z.string().optional(),
     age: zod_1.z.number().optional(),
-    lastDonationDate: zod_1.z.date().optional(),
+    lastDonationDate: zod_1.z.string().optional(),
+    phone: zod_1.z.string().optional(),
+    location: zod_1.z.string().min(1, "Please enter your address!").optional(),
 });
 const updateUserRoleStatusSchema = zod_1.z.object({
     status: zod_1.z.string().optional(),

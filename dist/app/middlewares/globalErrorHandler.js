@@ -28,6 +28,7 @@ const jsonwebtoken_1 = require("jsonwebtoken");
 const zod_1 = require("zod");
 const globalErrorHandler = (error, req, res, next) => {
     // Handling Zod validation errors
+    console.log(error);
     if (error instanceof zod_1.ZodError) {
         const issues = error.errors;
         const formattedErrors = issues.map((issue) => ({

@@ -67,6 +67,7 @@ const refreshToken = (token) => __awaiter(void 0, void 0, void 0, function* () {
     };
 });
 const changePassword = (user, payload) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log({ payload });
     const userData = yield prisma_1.default.user.findUniqueOrThrow({
         where: {
             email: user.email,
@@ -74,6 +75,7 @@ const changePassword = (user, payload) => __awaiter(void 0, void 0, void 0, func
         },
     });
     const isCorrectPassword = yield bcrypt_1.default.compare(payload.currentPassword, userData.password);
+    console.log({ isCorrectPassword, payload, userData });
     if (!isCorrectPassword) {
         throw new Error("Password incorrect!");
     }
@@ -86,6 +88,7 @@ const changePassword = (user, payload) => __awaiter(void 0, void 0, void 0, func
             password: hashedPassword,
         },
     });
+    console.log("cahnge");
     return {
         message: "Password changed successfully!",
     };

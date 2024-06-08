@@ -47,7 +47,6 @@ const getAllDoner = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, vo
         req.query.availability = false;
     }
     const filters = (0, pick_1.default)(req.query, user_constant_1.filterableFields);
-    console.log(filters);
     const options = (0, pick_1.default)(req.query, ["limit", "page", "sortBy", "sortOrder"]);
     const result = yield user_service_1.UserService.getAllDonarFromDB(filters, options);
     (0, sendResponse_1.default)(res, {
@@ -58,9 +57,18 @@ const getAllDoner = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, vo
         data: result.data,
     });
 }));
-const getSingleDoner = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const getAllUser = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield user_service_1.UserService.getAllUserFromDB();
+    (0, sendResponse_1.default)(res, {
+        success: true,
+        statusCode: 200,
+        message: "Users successfully found",
+        data: result,
+    });
+}));
+const getSingleUser = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
-    const result = yield user_service_1.UserService.getSingleDonarFromDB(id);
+    const result = yield user_service_1.UserService.getSingleUserFromDB(id);
     (0, sendResponse_1.default)(res, {
         success: true,
         statusCode: 200,
@@ -108,7 +116,6 @@ const getUserProfile = (0, catchAsync_1.default)((req, res) => __awaiter(void 0,
 }));
 const updateUserProfile = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { bio, age, lastDonationDate } = req.body;
-    // Call the service to update the user profile
     const result = yield user_service_1.UserService.updateUserProfileIntoDB(req, {
         bio,
         age,
@@ -121,9 +128,9 @@ const updateUserProfile = (0, catchAsync_1.default)((req, res) => __awaiter(void
         data: result,
     });
 }));
-const updateUserRoleStatusIntoDB = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    // Call the service to update the user profile
-    const result = yield user_service_1.UserService.updateUserRoleStatusIntoDB(req.body);
+const updateUserRoleStatus = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.params;
+    const result = yield user_service_1.UserService.updateUserRoleStatusIntoDB(Object.assign({ id }, req.body));
     (0, sendResponse_1.default)(res, {
         statusCode: 200,
         success: true,
@@ -139,6 +146,7 @@ exports.UserController = {
     updateRequestStatus,
     getUserProfile,
     updateUserProfile,
-    getSingleDoner,
-    updateUserRoleStatusIntoDB,
+    getSingleUser,
+    updateUserRoleStatus,
+    getAllUser,
 };

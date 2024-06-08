@@ -63,6 +63,7 @@ const registerUserIntoDB = (req) => __awaiter(void 0, void 0, void 0, function* 
                 email: true,
                 phone: true,
                 status: true,
+                role: true,
                 bloodType: true,
                 location: true,
                 availability: true,
@@ -77,7 +78,7 @@ const registerUserIntoDB = (req) => __awaiter(void 0, void 0, void 0, function* 
 });
 const getAllDonarFromDB = (params, options) => __awaiter(void 0, void 0, void 0, function* () {
     const { page, limit, skip, sortBy, sortOrder } = pagination_1.pagination.calculatePagination(options);
-    const { searchTerm } = params, filterData = __rest(params, ["searchTerm"]);
+    const { availability, searchTerm } = params, filterData = __rest(params, ["availability", "searchTerm"]);
     const andConditions = [];
     if (searchTerm) {
         andConditions.push({
@@ -94,8 +95,20 @@ const getAllDonarFromDB = (params, options) => __awaiter(void 0, void 0, void 0,
             AND: Object.keys(filterData).map((key) => ({
                 [key]: {
                     equals: filterData[key],
+                    mode: "insensitive",
                 },
             })),
+        });
+    }
+    if (availability === true || availability === false) {
+        andConditions.push({
+            AND: [
+                {
+                    availability: {
+                        equals: availability,
+                    },
+                },
+            ],
         });
     }
     andConditions.push({
@@ -106,7 +119,6 @@ const getAllDonarFromDB = (params, options) => __awaiter(void 0, void 0, void 0,
         },
     });
     const whereConditions = andConditions.length > 0 ? { AND: andConditions } : {};
-    console.log(sortBy, sortOrder);
     const result = yield prisma_1.default.user.findMany({
         where: whereConditions,
         skip,
@@ -141,7 +153,7 @@ const getAllDonarFromDB = (params, options) => __awaiter(void 0, void 0, void 0,
         data: result,
     };
 });
-const getSingleDonarFromDB = (id) => __awaiter(void 0, void 0, void 0, function* () {
+const getSingleUserFromDB = (id) => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield prisma_1.default.user.findUnique({
         where: {
             id,
@@ -149,15 +161,21 @@ const getSingleDonarFromDB = (id) => __awaiter(void 0, void 0, void 0, function*
     });
     return result;
 });
+const getAllUserFromDB = () => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield prisma_1.default.user.findMany();
+    return result;
+});
 const createDonationRequestIntoDB = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const token = req.headers.authorization;
     if (!token) {
         throw new ApiError_1.default(http_status_1.default.UNAUTHORIZED, "Unauthorized Access!");
     }
-    // Decoding the token to get the requester's details
     const decodedToken = jwtToken_1.jwtToken.verifyToken(token, config_1.default.jwt.jwt_secret);
+    console.log(decodedToken);
+    if (!decodedToken) {
+        throw new ApiError_1.default(http_status_1.default.UNAUTHORIZED, "Unauthorized Access!");
+    }
     const requestData = Object.assign(Object.assign({}, req.body), { requesterId: decodedToken.id });
-    console.log(requestData);
     const result = yield prisma_1.default.request.create({
         data: requestData,
         select: {
@@ -177,6 +195,7 @@ const createDonationRequestIntoDB = (req) => __awaiter(void 0, void 0, void 0, f
                     email: true,
                     phone: true,
                     status: true,
+                    role: true,
                     bloodType: true,
                     location: true,
                     availability: true,
@@ -187,6 +206,7 @@ const createDonationRequestIntoDB = (req) => __awaiter(void 0, void 0, void 0, f
             },
         },
     });
+    console.log(result);
     return result;
 });
 const getDonationRequestsForDonorFromDB = (req) => __awaiter(void 0, void 0, void 0, function* () {
@@ -206,6 +226,7 @@ const getDonationRequestsForDonorFromDB = (req) => __awaiter(void 0, void 0, voi
                     id: true,
                     name: true,
                     email: true,
+                    phone: true,
                     location: true,
                     bloodType: true,
                     availability: true,
@@ -270,7 +291,9 @@ const getUserProfileFromDB = (req) => __awaiter(void 0, void 0, void 0, function
         select: {
             id: true,
             name: true,
+            phone: true,
             email: true,
+            isDonateBlood: true,
             bloodType: true,
             location: true,
             availability: true,
@@ -299,18 +322,20 @@ const updateUserProfileIntoDB = (req, data) => __awaiter(void 0, void 0, void 0,
 });
 const updateUserRoleStatusIntoDB = (payload) => __awaiter(void 0, void 0, void 0, function* () {
     const updateData = {};
-    if (payload.status) {
+    console.log(payload);
+    if (payload.status !== undefined) {
         updateData.status = payload.status;
     }
-    if (payload.role) {
+    if (payload.role !== undefined) {
         updateData.role = payload.role;
     }
     const updatedProfile = yield prisma_1.default.user.update({
         where: {
-            id: payload.userId,
+            id: payload.id,
         },
         data: updateData,
     });
+    console.log(updatedProfile);
     return updatedProfile;
 });
 exports.UserService = {
@@ -321,6 +346,7 @@ exports.UserService = {
     updateRequestStatusIntoDB,
     getUserProfileFromDB,
     updateUserProfileIntoDB,
-    getSingleDonarFromDB,
+    getSingleUserFromDB,
     updateUserRoleStatusIntoDB,
+    getAllUserFromDB,
 };

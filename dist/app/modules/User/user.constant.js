@@ -11,4 +11,5 @@ exports.filterableFields = [
     "bloodType",
     "availability",
     "searchTerm",
+    "location",
 ];
